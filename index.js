@@ -1,20 +1,24 @@
 document.addEventListener('DOMContentLoaded', (event) => {
-    const candleCategory = document.getElementById("candle-category");
-    candleCategory.addEventListener("click", toggleMenu);
+    const categories = document.getElementsByClassName("gdc");
 
-    const studyItem = document.getElementById('try');
-    // 添加点击事件监听器
-    studyItem.addEventListener('click', function() {
-        // 页面跳转到指定的 URL
-        window.location.href = 'page2.html';
+    const gdcs = document.querySelectorAll('.gdc');
+    print(gdcs);
+    gdcs.forEach(gdc => {
+        gdc.addEventListener('click', function() {
+            const menu = this.querySelector('.navMenu');
+            if (menu.style.display === 'none' || menu.style.display === '') {
+                menu.style.display = 'block';
+            } else {
+                menu.style.display = 'none';
+            }
+        });
     });
-});
-  
-function toggleMenu() {
-    var menu = document.getElementById("navMenu");
-    if (menu.style.display === "none") {
-        menu.style.display = "block";
-    } else {
-        menu.style.display = "none";
+
+    // 可选：如果页面中有 id="try" 的元素，为其添加事件监听器
+    const studyItem = document.getElementById('try');
+    if (studyItem) {
+        studyItem.addEventListener('click', function() {
+            window.location.href = 'page2.html';
+        });
     }
-}
+});
